@@ -81,8 +81,6 @@ echo "------------------------unready pod (未准备的pod)---------------------
 echo -e "$unready_pod"
 echo "-------------------------restart pod(重启过的pod)-----------------------------------"
 echo -e "$restart_pod"
-
-
 echo "------------------------K8S pod status(K8S 集群pod状态)------------------------------"
 if [[ -z "$unnormal_pod" && -z "$unready_pod" ]];then
 echo -e "ALL pod are OK\n"
