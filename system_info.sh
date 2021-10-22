@@ -83,9 +83,9 @@ echo "-------------------------restart pod(重启过的pod)---------------------
 echo -e "$restart_pod"
 echo "------------------------K8S pod status(K8S 集群pod状态)------------------------------"
 if [[ -z "$unnormal_pod" && -z "$unready_pod" ]];then
-echo -e "ALL pod are OK\n"
+    echo -e "ALL pod are OK\n"
 else
-echo -e "Some  pod  is unnormal\n"
+    echo -e "Some  pod  is unnormal\n"
 fi
 echo  "----------------------system base info (系统基础信息)-------------------------------"
 echo  -e  "CPU：${cpu_info}\n\n内存：${free_info}\n\n磁盘：${disk_info}"
