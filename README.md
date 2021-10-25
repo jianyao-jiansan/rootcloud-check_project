@@ -31,17 +31,22 @@ sh system_info.sh
 kubectl is exited 
 
 ------------------------unrunning pod (异常的pod)-----------------------------------
+
 iothub-persistent-hive-realtime-6ff8b674c7-wc6q6
 iothub-persistent-hive-recoup-ff6bff6ff-f4k6h
 
 ------------------------unready pod (未准备的pod)-----------------------------------
 
+
 -------------------------restart pod(重启过的pod)-----------------------------------
 
+
 ------------------------K8S pod status(K8S 集群pod状态)------------------------------
+
 Some  pod  is unnormal
 
 ----------------------system base info (系统基础信息)-------------------------------
+
 CPU：3%
 
 内存：37.3%
