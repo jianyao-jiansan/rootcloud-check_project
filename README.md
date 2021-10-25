@@ -25,6 +25,7 @@ sh system_info.sh
 
 #### 使用示例
 [root@node01 ~]# sh system_info.sh 
+
 '''
 kubectl is exited 
 ------------------------unrunning pod (异常的pod)-----------------------------------
