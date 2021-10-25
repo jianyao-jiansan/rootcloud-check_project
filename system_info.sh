@@ -42,7 +42,7 @@ unRuninginitpodinfo="test-job-connect|test-job-openapi|rook-ceph-osd-prepare-nod
 #K8S pod 信息写入文件
 kubectl get po --all-namespaces | grep -v NAME > $k8sfile
 #K8S 重启事件写入文件
-kubectl get event --all-namespaces | grep Started > $k8s_restart
+kubectl get event --all-namespaces | grep restarting > $k8s_restart
 
 #解析文件 拿到发生重启事件的podname
 while read line
