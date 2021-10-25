@@ -24,8 +24,28 @@ sh system_info.sh
 ```
 
 #### 使用示例
+[root@node01 ~]# sh system_info.sh 
+'''
+kubectl is exited 
+------------------------unrunning pod (异常的pod)-----------------------------------
+iothub-persistent-hive-realtime-6ff8b674c7-wc6q6
+iothub-persistent-hive-recoup-ff6bff6ff-f4k6h
 
-![ed72b0a3196845bd807cb120ca41c8c5ad699483](ed72b0a3196845bd807cb120ca41c8c5ad699483.png)
+------------------------unready pod (未准备的pod)-----------------------------------
+
+-------------------------restart pod(重启过的pod)-----------------------------------
+
+------------------------K8S pod status(K8S 集群pod状态)------------------------------
+Some  pod  is unnormal
+
+----------------------system base info (系统基础信息)-------------------------------
+CPU：3%
+
+内存：37.3%
+
+磁盘：51%
+
+
 ## 部署方法
 
 上传脚本至现网节点的/root目录下。
