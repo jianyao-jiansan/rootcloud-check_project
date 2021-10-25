@@ -33,6 +33,7 @@ kubectl is exited
 ------------------------unrunning pod (异常的pod)-----------------------------------
 
 iothub-persistent-hive-realtime-6ff8b674c7-wc6q6
+
 iothub-persistent-hive-recoup-ff6bff6ff-f4k6h
 
 ------------------------unready pod (未准备的pod)-----------------------------------
