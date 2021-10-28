@@ -27,12 +27,12 @@ ansible all -m shell -a "df -h | egrep -v \"k8s|pods| /dev| /boot| /run| /sys| /
 disk_info=$(ansible all -m shell -a "df -h | egrep -v \"k8s|pods| /dev| /boot| /run| /sys| /home| /var| ^/ \"" | egrep [0-9]% | awk '{print $5}'| sort -t "%" -k1 -n | tail -n 1)
 
 #K8S pod 检查开始
-kubectlexit=$(kubectl version)
-if [ -z "$kubectlexit" ];then
-    echo "kubectl is not exited"
+kubectlexiting=$(kubectl version)
+if [ -z "$kubectlexiting" ];then
+    echo "kubectl is not exiting"
     exit 0
 fi
-echo "kubectl is exited"
+echo "kubectl is exiting"
 k8sfile="/tmp/K8Sinfo.log"
 k8s_restart="/tmp/k8s_restart.log"
 restart_pod=""
