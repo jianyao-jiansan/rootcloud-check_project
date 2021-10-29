@@ -60,7 +60,7 @@ then
     exit
 fi
 
-###### partition生成有一个小时的延迟，当前时间点只能看到1小时之前整点产生的partition ######
+###### partition生成有一个小时的延迟，当前时间点查看上一个整点小时产生的partition ######
 ###### 如果最后一个partition对应的时间戳，小于当前时间对应2小时以前的时间戳，则判断hive partitions数据有丢失 ######
 # 最近一个partition对应的时间戳
 last_partition_timestamp=`expr ${partition_hour_ids[-1]} \* ${ONE_HOUR_SECONDS}`
@@ -70,7 +70,8 @@ last_2hour_timestamp=`expr ${current_timestamp} - 2 \* ${ONE_HOUR_SECONDS} `
 if [ ${last_partition_timestamp} -lt ${last_2hour_timestamp} ];
 then
     echo "----------------------------------Hive Partitions 数据不正常----------------------------------"
-    echo "${HIVE_DATABASE}.${table_name} 最近1小时以内的partition没有生成"
+    echo "${HIVE_DATABASE}.${table_name} 上一个整点小时partition没有生成"
+    echo "最近一个 partition id 对应的时间戳: ${last_partition_timestamp}"
     exit
 fi
 
