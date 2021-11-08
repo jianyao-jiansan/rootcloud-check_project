@@ -74,6 +74,22 @@ do
     fi
 done < $k8sfile
 
+#时间同步检查 检查通过ntpstat命令的返回码判断，如果返回码不为0，则是异常
+#检测是否存在ntpd，存在则继续检测时间差，如果不存在则直接检测时间差异
+systemctl status ntpd
+cmd_status=$(echo $?)
+if [ $cmd_status -ne 0 ];then
+  ntp_status=0
+else
+  ansible all -m shell -a "ntpstat" 
+  ntp_status=$(echo $?)
+fi
+time_max_diff=10
+ansible all -m shell -a "date +%s" |grep -v "rc" |sort >/tmp/time.log
+early_time=$(cat /tmp/time2.log |head -n 1)
+last_time=$(cat /tmp/time2.log |tail -n 1)
+time_diff=$(expr $last_time - $early_time)
+
 #检查结果输出
 echo "------------------------unrunning pod (异常的pod)-----------------------------------"
 echo -e "$unnormal_pod"
@@ -89,3 +105,9 @@ else
 fi
 echo "----------------------system base info (系统基础信息)-------------------------------"
 echo -e "CPU：${cpu_info}\n\n内存：${free_info}\n\n磁盘：${disk_info}"
+echo "-----------------------ntp status(ntp 状态)----------------------------------------"
+if [ $time_diff -lt $time_max_diff ] && [ $ntp_status -eq 0 ];then
+  echo "Service of ntp is OK"
+else
+  echo "Service of ntp is abnormal"
+fi
