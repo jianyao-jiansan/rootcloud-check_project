@@ -86,8 +86,8 @@ else
 fi
 time_max_diff=1
 ansible all -m shell -a "date +%s" |grep -v "rc" |sort >/tmp/time.log
-early_time=$(cat /tmp/time2.log |head -n 1)
-last_time=$(cat /tmp/time2.log |tail -n 1)
+early_time=$(cat /tmp/time.log |head -n 1)
+last_time=$(cat /tmp/time.log |tail -n 1)
 time_diff=$(expr $last_time - $early_time)
 
 #检查结果输出
