@@ -84,7 +84,7 @@ else
   ansible all -m shell -a "ntpstat" 
   ntp_status=$(echo $?)
 fi
-time_max_diff=10
+time_max_diff=1
 ansible all -m shell -a "date +%s" |grep -v "rc" |sort >/tmp/time.log
 early_time=$(cat /tmp/time2.log |head -n 1)
 last_time=$(cat /tmp/time2.log |tail -n 1)
@@ -106,7 +106,7 @@ fi
 echo "----------------------system base info (系统基础信息)-------------------------------"
 echo -e "CPU：${cpu_info}\n\n内存：${free_info}\n\n磁盘：${disk_info}"
 echo "-----------------------ntp status(ntp 状态)----------------------------------------"
-if [ $time_diff -lt $time_max_diff ] && [ $ntp_status -eq 0 ];then
+if [ $time_diff -le $time_max_diff ] && [ $ntp_status -eq 0 ];then
   echo "Service of ntp is OK"
 else
   echo "Service of ntp is abnormal"
