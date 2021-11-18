@@ -99,15 +99,30 @@ echo "-------------------------restart pod(重启过的pod)---------------------
 echo -e "$restart_pod"
 echo "------------------------K8S pod status(K8S 集群pod状态)------------------------------"
 if [[ -z "$unnormal_pod" && -z "$unready_pod" ]];then
-    echo -e "All pods are OK\n"
+    echo -e "All pods are OK"
 else
-    echo -e "Some pod is unnormal\n"
+    echo -e "Some pod is unnormal"
 fi
-echo "----------------------system base info (系统基础信息)-------------------------------"
-echo -e "CPU：${cpu_info}\n\n内存：${free_info}\n\n磁盘：${disk_info}"
 echo "-----------------------ntp status(ntp 状态)----------------------------------------"
-if [ $time_diff -le $time_max_diff ] && [ $ntp_status -eq 0 ];then
+if [ $ntp_status -eq 0 ];then
   echo "Service of ntp is OK"
 else
-  echo "Service of ntp is abnormal"
+  echo "Service of ntp is warnning"
+fi
+if [ $time_diff -le $time_max_diff ] ;then
+  echo "Time difference is OK"
+else
+  echo "Time difference is abnormal"
+fi
+echo "----------------------system base info (系统基础信息)-------------------------------"
+echo -e "CPU：${cpu_info}\n内存：${free_info}\n磁盘：${disk_info}"
+if [[ -z "$unnormal_pod" && -z "$unready_pod" ]];then
+    echo -e "K8S pod状态: 正常"
+else
+    echo -e "K8S pod状态: 不正常"
+fi
+if [ $time_diff -le $time_max_diff ] ;then
+  echo "服务器时间：正常"
+else
+  echo "服务器时间：不正常"
 fi
